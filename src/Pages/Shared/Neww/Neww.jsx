@@ -1,12 +1,15 @@
 import React from 'react'
 import moment from 'moment';
-import { CiBookmark, CiShare1, CiShare2 } from "react-icons/ci";
+import { CiBookmark, CiShare2 } from "react-icons/ci";
+import { Link } from 'react-router-dom';
 
 
 
 const Neww = ({ neww }) => {
 
     console.log(neww)
+
+    const {_id} = neww
 
 
     return (
@@ -38,8 +41,17 @@ const Neww = ({ neww }) => {
                         alt="Shoes" />
                 </div>
                 <div className="card-body">
-                    <p>{neww.details}</p>
-                    <a className='font-semibold text-orange-500 text-lg' href="#"> Read More...</a>
+
+
+                    {
+                        neww.details.length > 200 ?
+                         <p>{neww.details.slice(0,200)} <br /> <Link 
+                         to={`/neww/${_id}`}
+                         className='font-semibold text-orange-500 text-lg'>Read More...</Link> </p>
+                         :
+                         <p>{neww.details}</p>
+
+                    }
                 </div>
                 <div className='w-[500px] ml-5 bg-slate-300 h-[0.8px]'></div>
                 <div className='p-4 flex justify-between'>
